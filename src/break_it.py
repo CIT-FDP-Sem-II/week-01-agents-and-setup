@@ -24,8 +24,16 @@ MODEL = "gemini-2.0-flash"
 
 
 def wrong_key():
-    """A well-formed key that no account owns. The request IS sent."""
-    client = genai.Client(api_key="AIzaSyNotARealKey00000000000000000000000")
+    """A well-formed key that no account owns. The request IS sent.
+
+    The value below is deliberately fake. The trailing comment is an
+    allowlist pragma - the secret scanner you write in Week 15 skips lines
+    carrying it, which is how a scanner stays testable. Use it only for
+    values you know are not real.
+    """
+    client = genai.Client(
+        api_key="AIzaSyNotARealKey00000000000000000000000"  # pragma: allowlist secret
+    )
     return client.models.generate_content(model=MODEL, contents=PROMPT).text
 
 
